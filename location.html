@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Geolocation Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <button id="show" class="btn">Show my location</button>
+        <div id="message"></div>
+    </div>
+    <script>
+        (() => {
+    const message = document.querySelector('#message');
+
+    // check if the Geolocation API is supported
+    if (!navigator.geolocation) {
+        message.textContent = `Your browser doesn't support Geolocation`;
+        message.classList.add('error');
+        return;
+    }
+
+    // handle click event
+    const btn = document.querySelector('#show');
+    btn.addEventListener('click', function () {
+        // get the current position
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    });
+
+
+    // handle success case
+    function onSuccess(position) {
+        const {
+            latitude,
+            longitude
+        } = position.coords;
+
+        message.classList.add('success');
+        message.textContent = `Your location: (${latitude},${longitude})`;
+    }
+
+    // handle error case
+    function onError() {
+        message.classList.add('error');
+        message.textContent = `Failed to get your location!`;
+    }
+})();
+    </script>
+</body>
+</html>
