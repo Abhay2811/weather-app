@@ -49,6 +49,16 @@ function weatherDetails(info){
         const country = info.sys.country;
         const {description, id} = info.weather[0];
         const {temp, feels_like, humidity} = info.main;
+        const region = info.sys.sunrise;
+        const regionn = info.sys.sunset;
+        const unixTimestamp = region,
+        date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+        sunrise = (date.toLocaleTimeString([], { hour12: true}));
+
+        const unixTimestampp = regionn,
+        datee = new Date(unixTimestampp * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+        sunset = (datee.toLocaleTimeString([], { hour12: true}));
+        
         if(id == 800){
             wIcon.src = "./icons/clear.svg";
         }else if(id >= 200 && id <= 232){
@@ -68,6 +78,8 @@ function weatherDetails(info){
         weatherPart.querySelector(".location span").innerText = `${city}, ${country}`;
         weatherPart.querySelector(".temp .numb-2").innerText = Math.floor(feels_like);
         weatherPart.querySelector(".humidity span").innerText = `${humidity}%`;
+        weatherPart.querySelector(".humidityy span").innerText = `${sunrise}`;
+        weatherPart.querySelector(".humidityyy span").innerText = `${sunset}`;
         infoTxt.classList.remove("pending", "error");
         infoTxt.innerText = "";
         inputField.value = "";
