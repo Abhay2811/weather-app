@@ -127,7 +127,7 @@ header i{
 .weather-part .temp{
   display: flex;
   font-weight: 500;
-  font-size: 72px;
+  font-size: 55px;
 }
 .weather-part .temp .numb{
   font-weight: 600;
