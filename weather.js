@@ -47,7 +47,7 @@ function weatherDetails(info){
     }else{
         const city = info.name;
         const country = info.sys.country;
-        const {description, id} = info.weather[0];
+        const {description, id, icon} = info.weather[0];
         const {temp, feels_like, humidity} = info.main;
         const region = info.sys.sunrise;
         const regionn = info.sys.sunset;
@@ -59,18 +59,21 @@ function weatherDetails(info){
         datee = new Date(unixTimestampp * 1000); // Multiply by 1000 to convert from seconds to milliseconds
         sunset = (datee.toLocaleTimeString([], { hour12: true}));
         
+        const iconcode = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+
+
         if(id == 800){
-            wIcon.src = "./icons/clear.svg";
+            wIcon.src = iconcode;
         }else if(id >= 200 && id <= 232){
-            wIcon.src = "./icons/storm.svg";  
+            wIcon.src = iconcode;  
         }else if(id >= 600 && id <= 622){
-            wIcon.src = "./icons/snow.svg";
+            wIcon.src = iconcode;
         }else if(id >= 701 && id <= 781){
-            wIcon.src = "./icons/haze.svg";
+            wIcon.src = iconcode;
         }else if(id >= 801 && id <= 804){
-            wIcon.src = "./icons/cloud.svg";
+            wIcon.src = iconcode;
         }else if((id >= 500 && id <= 531) || (id >= 300 && id <= 321)){
-            wIcon.src = "./icons/rain.svg";
+            wIcon.src = iconcode;
         }
         
         weatherPart.querySelector(".temp .numb").innerText = Math.floor(temp);
