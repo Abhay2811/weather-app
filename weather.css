@@ -159,6 +159,7 @@ header i{
   width: 100%;
   justify-content: space-between;
   border-top: 1px solid #ccc;
+  align-items: center;
 }
 .bottom-details .column{
   display: flex;
@@ -193,4 +194,20 @@ header i{
 }
 .humidity i{
   font-size: 37px;
+}
+
+.hourly-forecast{
+  display: flex;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin:15px 0 15px 0;
+  gap: 15px;
+  text-align: center;
+}
+
+.forecast-time{min-width: 77.16px}
+
+.bottom-details i{
+  font-size: 36px;
 }
