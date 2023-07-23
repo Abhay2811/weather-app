@@ -210,4 +210,5 @@ header i{
 
 .bottom-details i{
   font-size: 36px;
+  cursor: pointer;
 }
