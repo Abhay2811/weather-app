@@ -11,6 +11,7 @@ body{
   justify-content: center;
   min-height: 100vh;
   background: #87CEFA;
+  gap: 10px;
 }
 ::selection{
   color: #fff;
@@ -211,4 +212,21 @@ header i{
 .bottom-details i{
   font-size: 36px;
   cursor: pointer;
+}
+
+
+.daily-forecast {
+  gap: 12px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 1%;
+}
+
+.daily-forecast > div {
+  flex: 0 0 32%;
+  text-align: center;
 }

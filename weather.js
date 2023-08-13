@@ -52,7 +52,24 @@ function fetchHourlyForecast(lat, lon) {
       });
     
   }
-  
+
+  function dailyForecast(lat, lon) {
+  // Replace '21826a0aee2e7d65eec75b4c48c89fb3' with your actual API key
+  const apiKey = "21826a0aee2e7d65eec75b4c48c89fb3";
+
+  // Construct the API URL using the latitude, longitude, units, and request daily forecast
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,hourly&appid=${apiKey}`;
+
+  // Fetch the data from the API and parse the response as JSON
+  return fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => data.daily)
+      .catch(error => {
+        console.log("Error fetching hourly forecast:", error);
+        throw error;
+      });
+}
+  // console.log(dailyForecast());
 
 function fetchData() {
   infoTxt.innerText = "Getting weather details";
@@ -152,6 +169,52 @@ function weatherDetails(weatherInfo, hourlyWeather) {
   
           hourlyForecastContainer.appendChild(forecastItem);
         });
+
+
+        dailyForecast(weatherInfo.coord.lat, weatherInfo.coord.lon)
+      .then(dailyData => {
+        // Display the 10-day weather forecast
+        const dailyForecastContainer = document.querySelector(".daily-forecast");
+        dailyForecastContainer.innerHTML = ""; // Clear previous forecast
+
+        dailyData.forEach(day => {
+          const { temp, weather, dt } = day;
+          const description = weather[0].description;
+          const date = new Date(dt * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+          const icon = weather[0].icon;
+          const iconCode = `http://openweathermap.org/img/wn/${icon}.png`;
+
+          const forecastItem = document.createElement("div");
+          forecastItem.classList.add("forecast-item");
+
+          const forecastDate = document.createElement("div");
+          forecastDate.classList.add("forecast-date");
+          forecastDate.innerText = date;
+
+          const forecastIcon = document.createElement("img");
+          forecastIcon.classList.add("forecast-icon");
+          forecastIcon.src = iconCode;
+
+          const forecastDescription = document.createElement("div");
+          forecastDescription.classList.add("forecast-description");
+          forecastDescription.innerText = description;
+
+          const forecastTemp = document.createElement("div");
+          forecastTemp.classList.add("forecast-temp");
+          forecastTemp.innerText = Math.round(temp.day) + "°C";
+
+          forecastItem.appendChild(forecastDate);
+          forecastItem.appendChild(forecastIcon);
+          forecastItem.appendChild(forecastDescription);
+          forecastItem.appendChild(forecastTemp);
+
+          dailyForecastContainer.appendChild(forecastItem);
+        });
+      })
+      .catch(() => {
+        console.log("Error fetching 8-day forecast:", error);
+      throw error;
+      });
     }
   }
 }
@@ -169,3 +232,9 @@ function scrollRight() {
   var div = document.getElementById("scrollableDiv");
   div.scrollBy({ left: 200, behavior: "smooth" }); // Scroll 100 pixels to the right with smooth behavior
 }
+
+
+
+
+
+
