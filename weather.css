@@ -10,9 +10,10 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #87CEFA;
+  background: linear-gradient(to bottom, rgb(87, 144, 183), rgb(88, 173, 175));
   gap: 10px;
 }
+
 ::selection{
   color: #fff;
   background: #87CEFA;
@@ -23,6 +24,31 @@ body{
   border-radius: 7px;
   box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
 }
+.wrapper.active {
+  width: unset;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wrapper.active header {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.top-wrapper {
+  width: 600px;
+  display: flex;
+  gap: 20px;
+}
+
+.temp-day {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 0 0 66%;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
+}    
+
 .wrapper header{
   display: flex;
   font-size: 21px;
@@ -32,8 +58,8 @@ body{
   align-items: center;
   border-bottom: 1px solid #ccc;
 }
+
 header i{
-  font-size: 0em;
   cursor: pointer;
   margin-right: 8px;
 }
@@ -122,45 +148,57 @@ header i{
 .wrapper.active .weather-part{
   display: flex;
 }
-.weather-part img{
-  max-width: 125px;
+
+.temp-day-inner {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .weather-part .temp{
   display: flex;
   font-weight: 500;
-  font-size: 55px;
+  font-size: 36px;
+  justify-content: center;
 }
 .weather-part .temp .numb{
   font-weight: 600;
 }
 .weather-part .temp .deg{
-  font-size: 40px;
+  font-size: 30px;
   display: block;
-  margin: 10px 5px 0 0;
 }
-.weather-part .weather{
-  font-size: 21px;
-  text-align: center;
-  margin: -5px 20px 15px;
+.weather-part .weather,
+.location i,
+.country{
+  font-size: 18px;
 }
 .weather-part .location{
   display: flex;
-  font-size: 19px;
-  padding: 0 20px;
-  text-align: center;
-  margin-bottom: 30px;
-  align-items: flex-start;
+  font-size: 18px;
+  justify-content: center;
+  align-items:center;
+  margin-top: 10px;
 }
-.location i{
-  font-size: 22px;
-  margin: 4px 5px 0 0;
+
+.temp-details {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.temp-details .column {
+  display: flex;
+  align-items: center;
 }
 .weather-part .bottom-details{
   display: flex;
-  width: 100%;
+  width: 600px;
   justify-content: space-between;
-  border-top: 1px solid #ccc;
   align-items: center;
+  margin: 25px 0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15);
 }
 .bottom-details .column{
   display: flex;
@@ -169,18 +207,24 @@ header i{
   align-items: center;
   justify-content: center;
 }
+
+.hourly-forecast .forecast-item {
+  border-right: 3px solid #000000ab;
+}
 .column i{
   color: #5DBBFF;
-  font-size: 40px;
+  font-size: 34px;
 }
 .column.humidity{
-  border-left: 1px solid #ccc;
+  border-left: 3px solid #000000ab;
+  padding-left: 10px;
 }
 .column .details{
   margin-left: 3px;
 }
 .details .temp, .humidity span{
   font-size: 18px;
+  justify-content: start;
   font-weight: 500;
   margin-top: -3px;
 }
@@ -191,10 +235,10 @@ header i{
 }
 .column .details p{
   font-size: 14px;
-  margin-top: -6px;
+  margin-top: -5px;
 }
 .humidity i{
-  font-size: 37px;
+  font-size: 32px;
 }
 
 .hourly-forecast{
@@ -203,30 +247,61 @@ header i{
   overflow-y: hidden;
   overflow-x: hidden;
   margin:15px 0 15px 0;
-  gap: 15px;
+  gap: 5px;
   text-align: center;
 }
 
-.forecast-time{min-width: 77.16px}
+.forecast-time {
+  min-width: 90px
+}
 
 .bottom-details i{
   font-size: 36px;
   cursor: pointer;
 }
 
-
 .daily-forecast {
-  gap: 12px;
+  gap: 5px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
-  background: white;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  border-radius: 1%;
+  border-radius: 15px;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
+
+}
+
+.daily-forecast .forecast-date {
+  padding-bottom: 6px;
 }
 
 .daily-forecast > div {
-  flex: 0 0 32%;
-  text-align: center;
+    text-align: center;
+    flex: 0 0 100%;
+    align-self: center;
+}
+
+@media (max-width: 640px){
+  .top-wrapper,
+  .weather-part .bottom-details {
+    width: 400px;
+  }
+
+  .top-wrapper {
+    flex-direction: column;
+  }
+  .daily-forecast {
+    gap: 15px;
+  }
+  .daily-forecast > div {
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 421px) {
+  .top-wrapper,
+  .weather-part .bottom-details {
+    width: 305px;
+  }
 }

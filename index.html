@@ -18,51 +18,56 @@
           <button>Get Location</button>
         </div>
       </section>
+
       <section class="weather-part">
-        <img src="" alt="Weather Icon">
-        <div class="temp">
-          <span class="numb">_</span>
-          <span class="deg">°</span>C
-        </div>
-        <div class="weather">_ _</div>
-        <div class="location">
-          <i class='bx bx-map'></i>
-          <span>_, _</span>
-        </div>
-        <div class="bottom-details">
-          <div class="column feels">
-            <i class='bx bxs-thermometer' ></i>
-            <div class="details">
+        <div class="top-wrapper">
+          <div class="temp-day">
+            <div class="temp-day-inner">
+              <img src="" alt="Weather Icon">
               <div class="temp">
-                <span class="numb-2">_</span>
+                <span class="numb">_</span>
                 <span class="deg">°</span>C
               </div>
-              <p>Feels like</p>
+              <div class="weather">_ _</div>
+              <div class="location">
+                <i class='bx bx-map'></i>
+                <p class="state">_, _</p>
+                
+              </div>
+              <p class="country"></p>
+            </div>
+
+            <div class="temp-details ">
+            <div class="column feels">
+              <i class='bx bxs-thermometer' ></i>
+              <div class="details">
+                <div class="temp">
+                  <span class="numb-2">_</span>
+                  <span class="deg">°</span>C
+                </div>
+                <p>Feels like</p>
+              </div>
+            </div>
+            <div class="column humidity">
+              <i class='bx bxs-droplet-half'></i>
+              <div class="details">
+                <span>_</span>
+                <p>Humidity</p>
+              </div>
             </div>
           </div>
-          <div class="column humidity">
-            <i class='bx bxs-droplet-half'></i>
-            <div class="details">
-              <span>_</span>
-              <p>Humidity</p>
-            </div>
+          </div>
+          <div class="daily-forecast">
           </div>
         </div>
-        <div class="bottom-details">
+        <div class="bottom-details hourly-scroll">
           <i class='bx bx-chevron-left' onclick="scrollContentLeft()"></i>
           <div class="hourly-forecast" id="scrollableDiv">
-            
           </div>
           <i class='bx bx-chevron-right' onclick="scrollRight()"></i>
         </div>
       </section>
     </div>
-
-    <div class="daily-forecast">
-    
-    
-</div>
-    
     <script src="weather.js"></script>
   </body>
 </html>
